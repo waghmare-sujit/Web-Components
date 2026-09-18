@@ -13,9 +13,12 @@
   --base-primary: #142b7b; --base-secondary: #27187e;
     --color-text: light-dark(
       oklch(from var(--base-primary) 0.18 0.075 h),
-      var(--base-bg>)
-    )
-  ;
+      var(--base-bg)
+    );
+    --color-border: light-dark(
+      oklch(from var(--base-primary) 0.18 0.075 h),
+      var(--base-bg)
+    );
   
   --base-accent: #f46700;
     --color-accent: light-dark(
@@ -50,7 +53,7 @@
 
 ::selection {
   background-color: var(--color-accent);
-  color: var(--color-bg);
+  color: var(--base-bg);
 }
 
 html {
@@ -65,16 +68,17 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
   font-family: var(--font-body);
   font-size: var(--text-base);
-  /* background: var(--color-bg); */
+  background: var(--color-bg);
   color: var(--color-text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   padding: 0 /* var(--space-fluid-sm) */;
   overflow-x: hidden;
   text-decoration-skip-ink: auto;
+  justify-content: center;
 }
 
 h2 {
@@ -145,11 +149,11 @@ button {
   flex-direction: column;
   gap: var(--space-2);
   padding: calc(var(--space-1) + 6px) var(--space-3);
-  background: var(--color-text);
-  color: var(--color-text);
-  border: 1.3px solid #f7f7f7;
+  background-color: var(--color-bg);
+  border: 1.3px solid var(--color-border);
   border-radius: 16px;
-  min-width: 0;
+  width: min(100%, 400px);
+  max-width: 400px;
   & > div:first-child {
     margin-bottom: 12px;
     span {
@@ -161,7 +165,8 @@ button {
       font-size: 16px;
     }
     small {
-      color: #dcdcdc;
+      color: var(--color-text);
+      opacity: 60%;
       font-size: 20px;
     }
   }
