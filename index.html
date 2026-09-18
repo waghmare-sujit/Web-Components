@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en" dir="auto">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>FinUP</title>
+<meta name="color-scheme" content="light dark" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f0f0f0" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f0f0f" />
+
+<link rel="stylesheet" href="styles.css">
+<script src="https://kit.fontawesome.com/314b9eb4d7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<main id="main-content" tabindex="-1">
+  <div class="card">
+    <div class="flex flex-row flex-2">
+      <div>
+        <span>your balance</span>
+        <h2 id="amt"><sup>₹</sup>14,342<small>.19</small></h2>
+      </div>
+      <div>
+        <button id="topUp">Top Up</button>
+      </div>
+    </div>
+    <div class="flex flex-row flex-2">
+    <span id="cardNo">
+      <svg 
+        viewBox="0 0 32 20" 
+        width="1.6em" 
+        height="1em" 
+        style="display: inline-block; vertical-align: -0.15em; overflow: visible;" 
+        aria-hidden="true" 
+        focusable="false">
+        <rect width="32" height="20" rx="3" fill="none" />
+        <circle cx="11" cy="10" r="7" fill="#EB001B" />
+        <circle cx="21" cy="10" r="7" fill="#F79E1B" />
+        <path d="M16 4.96a6.96 6.96 0 0 1 2.37 5.04c0 1.97-.82 3.75-2.14 5.02A6.96 6.96 0 0 1 13.63 10c0-1.97.82-3.75 2.14-5.02l.23-.02z" fill="#FF5F00" />
+      </svg>
+      •••• •••• 6789
+    </span>
+    <span id="card-date">03/2030</span>
+    </div>
+    <div class="flex flex-row flex-2">
+      <button>
+        <i class="deg45 fa-solid fa-arrow-up">
+        </i>
+        Transfer
+      </button>
+      <button>
+        <i class="deg-45 fa-solid fa-arrow-up">
+        </i>
+        Receive</button>
+    </div>
+  </div>
+</main>
+<script>
+const t = (el, val, fn) => {
+  const orig = fn ? fn(el).nodeValue : el.innerHTML;
+  el.onclick = () => fn ? fn(el).nodeValue = fn(el).nodeValue === val ? orig : val : el.innerHTML = el.innerHTML === val ? orig : val;
+};
+
+t(document.getElementById('amt'), '****');
+t(document.getElementById('cardNo'), ' 4248 1282 6789', e => [...e.childNodes].find(n => n.nodeType === 3 && n.textContent.trim()));
+t(document.getElementById('card-date'), '123');
+
+</script>
+</body>
+</html>
